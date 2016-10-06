@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<title>Survey King</title>
+<style>
+
+  .div1{ min-height: 100%;
+     width: 70%;
+     background-color: #666666;
+     float:left;
+   }
+
+   .dialog{
+     width: 50%;
+     background-color: white;
+     float:both;
+   }
+    body{
+      color: #ffff7f;
+    }
+
+    .button {
+      display: inline-block;
+      border-radius: 20px;
+      background-color: #f4511e;
+      border: none;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 20px;
+      padding: 7px;
+      width: 150px;
+      transition: all 0.5s;
+      cursor: pointer;
+      margin: 5px;
+      }
+
+    .button span {
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      transition: 0.5s;
+      }
+
+    .button span:after {
+      content: ":)";
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+      }
+
+    .button:hover span {
+      padding-right: 25px;
+      }
+
+    .button:hover span:after {
+       opacity: 1;
+       right: 0;
+      }
+</style>
+<body>
+
+    <img class="logo" src="oo.png" alt="logo" style="width:300px;height:228px;">
+    <br>
+    <br>
+    <div class="div1">
+<!-- Left side survey question creator -->
+      <center>
+        <div style="width: 28%; background-color: #ffff7f; color: black;">
+
+          <h3>Choose one of the option to create survey</h3>
+          <form action="php1.html" method="post">
+            <input type="radio" name="questionType" value="multipleChoice">Multiple Choice
+            <br>
+            <input type="radio" name="questionType" value="bool">True/False
+            <br>
+            <input type="radio" name="questionType" value="text">Text
+            <br>
+            <input type="radio" name="questionType" value="dropDown">Drop Down
+            <br>
+            <br>
+            <input type="submit" name="submit" value="Add Question" class="button">
+          </form>
+        </div>
+     </center>
+
+    <?php
+      if ($_POST) {
+        echo "Hello world!";
+      }
+    ?>
+
+    </div>
+
+<!-- Right side survey preview -->
+    <div class="div1" style="width: 28%; background-color: #ffff7f; float:right;">
+      <br>
+      <br>
+      <br>
+      <br>
+      <center>
+          <button class="button" style="vertical-align:middle"><span>Create </span></button>
+      </center>
+    </div>
+</body>
+</html>
