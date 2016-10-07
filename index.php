@@ -305,8 +305,8 @@ session_start();
               echo $_SESSION["question$i"]['question'];
               echo "<br>";
               echo '
-                <input type="radio" name="true" value="true">True
-                <input type="radio" name="false" value="false">False
+                <input type="radio" name="bool" value="true">True
+                <input type="radio" name="bool" value="false">False
                 ';
               break;
             case 'text':
