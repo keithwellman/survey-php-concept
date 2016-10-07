@@ -346,21 +346,19 @@ session_start();
 
     <br>
     <center>
-        <button class="button" style="vertical-align:middle"><span>Create </span></button>
-        <br>
-        <p>
-          <?php
-            if (isset($_GET['logout'])) {
-            if($_GET['logout']==1) session_destroy();
-            }
-           ?>
-           <a href="?logout=1">Start Over</a>
-
-        </p>
+      <form class="" action="survey.php" method="post">
+        <button type="submit" class="button" style="vertical-align:middle"><span>Create </span></button>
+      </form>
+      <br>
+      <p>
+        <?php
+          if (isset($_GET['logout'])) {
+          if($_GET['logout']==1) session_destroy();
+          }
+         ?>
+         <a href="?logout=1">Start Over</a>
+      </p>
     </center>
   </div>
-
-
-
 </body>
 </html>
