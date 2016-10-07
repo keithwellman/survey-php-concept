@@ -163,15 +163,25 @@ session_start();
             break;
 
           case 'text':
-            echo "You chose text.";
+            echo '
+            <label for="question">Question: </label>
+            <input type="text" name="question" value=""><br>
+            ';
             break;
 
           case 'dropDown':
-            echo "You chose dropDown.";
+            echo '
+            <label for="question">Question: </label>
+            <input type="text" name="question" value=""><br>
+            <input type="text" name="responseA" value="Option 1"><br>
+            <input type="text" name="responseB" value="Option 2"><br>
+            <input type="text" name="responseC" value="Option 3"><br>
+            <input type="text" name="responseD" value="Option 4"><br>
+            ';
             break;
 
           default:
-            # code...
+
             break;
         }
       }
@@ -182,9 +192,9 @@ session_start();
 
   <?php
     // testing
-    print htmlspecialchars(print_r($_POST,true));
-    echo "<br><br><p>Session:</p><br>";
-    print htmlspecialchars(print_r($_SESSION,true));
+    // print htmlspecialchars(print_r($_POST,true));
+    // echo "<br><br><p>Session:</p><br>";
+    // print htmlspecialchars(print_r($_SESSION,true));
   ?>
 
 
@@ -236,23 +246,31 @@ session_start();
             break;
 
           case 'text':
+            $question_type = $_SESSION['questionType'];
             $question = $_POST['question'];
-            $_SESSION["question$questionNum"] = Array("questionType" => "$question_type", "question" => "$question",
-            "responseA" => "$responseA");
+            $questionNum = $_SESSION['questionNum'];
+
+            $_SESSION["question$questionNum"] = Array("questionType" => "$question_type", "question" => "$question");
             $questionNum++;
+            $_SESSION['questionNum'] = $questionNum;
             break;
 
           case 'dropDown':
+            $question_type = $_SESSION['questionType'];
             $question = $_POST['question'];
             $responseA = $_POST['responseA'];
             $responseB = $_POST['responseB'];
             $responseC = $_POST['responseC'];
+            $responseD = $_POST['responseD'];
+            $questionNum = $_SESSION['questionNum'];
 
             $_SESSION["question$questionNum"] = Array("questionType" => "$question_type", "question" => "$question",
             "responseA" => "$responseA",
             "responseB" => "$responseB",
-            "responseC" => "$responseC");
+            "responseC" => "$responseC",
+            "responseD" => "$responseD");
             $questionNum++;
+            $_SESSION['questionNum'] = $questionNum;
             break;
 
           default:
@@ -292,10 +310,27 @@ session_start();
                 ';
               break;
             case 'text':
-              # code...
+              echo "<p><b>Question $i</b></p>";
+              echo "<br>";
+              echo $_SESSION["question$i"]['question'];
+              echo "<br>";
+              echo '
+                <textarea name="text" rows="8" cols="40"></textarea>
+                ';
               break;
             case 'dropDown':
-              # code...
+              echo "<p><b>Question $i</b></p>";
+              echo "<br>";
+              echo $_SESSION["question$i"]['question'];
+              echo "<br>";
+              echo '
+                <select>
+                  <option value="'.$_SESSION["question$i"]['responseA'].'">'.$_SESSION["question$i"]['responseA'].'</option>
+                  <option value="'.$_SESSION["question$i"]['responseB'].'">'.$_SESSION["question$i"]['responseB'].'</option>
+                  <option value="'.$_SESSION["question$i"]['responseC'].'">'.$_SESSION["question$i"]['responseC'].'</option>
+                  <option value="'.$_SESSION["question$i"]['responseD'].'">'.$_SESSION["question$i"]['responseD'].'</option>
+                </select>
+                ';
               break;
 
             default:
@@ -306,49 +341,6 @@ session_start();
         }
 
       }
-
-      // if question is multiple choice display radio input with session data
-    //   if ($_POST && ($_POST['submit'] == 'Add to Survey')) {
-    //   if (isset($_SESSION['question1'])) {
-    //     echo "<p>Question 1</p>";
-    //     if ($_SESSION['questionType'] == 'multipleChoice') {
-    //       echo $_SESSION['question1']['question1a'];
-    //       echo "<br>";
-    //       echo '
-    //         <input type="radio" name="question1" value="'.$_SESSION['question1']['question1a'].'">'.$_SESSION['question1']['question1b'].'<br>
-    //         <input type="radio" name="question1" value="'.$_SESSION['question1']['question1a'].'">'.$_SESSION['question1']['question1c'].'<br>
-    //         <input type="radio" name="question1" value="'.$_SESSION['question1']['question1a'].'">'.$_SESSION['question1']['question1d'].
-    //       '';
-    //     }
-    //     elseif ($_SESSION['questionType'] == 'bool') {
-    //       echo $_SESSION['question1']['question2a'];
-    //       echo "<br>";
-    //       echo '
-    //         <input type="radio" name="question2" value="true">True<br>
-    //         <input type="radio" name="question2" value="false">False<br>
-    //         ';
-    //     }
-    //   }
-    //   elseif (isset($_SESSION['question2'])) {
-    //     echo "<p>Question 2</p>";
-    //     if ($_SESSION['questionType'] == 'multipleChoice') {
-    //       echo $_SESSION['question2']['question2a'];
-    //       echo "<br>";
-    //       echo '
-    //         <input type="radio" name="question2" value="'.$_SESSION['question2']['question2a'].'">'.$_SESSION['question2']['question2b'].'<br>
-    //         <input type="radio" name="question2" value="'.$_SESSION['question2']['question2a'].'">'.$_SESSION['question2']['question2c'].'<br>
-    //         <input type="radio" name="question2" value="'.$_SESSION['question2']['question2a'].'">'.$_SESSION['question2']['question2d'].'';
-    //     }
-    //     elseif ($_SESSION['questionType'] == 'bool') {
-    //       echo $_SESSION['question2']['question2a'];
-    //       echo "<br>";
-    //       echo '
-    //         <input type="radio" name="question2" value="true">True<br>
-    //         <input type="radio" name="question2" value="false">False<br>
-    //         ';
-    //     }
-    //   }
-    // }
 
      ?>
 
@@ -362,7 +354,7 @@ session_start();
             if($_GET['logout']==1) session_destroy();
             }
            ?>
-           <a href="?logout=1">Destroy Session</a>
+           <a href="?logout=1">Start Over</a>
 
         </p>
     </center>
