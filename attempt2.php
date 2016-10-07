@@ -226,13 +226,9 @@ session_start();
             break;
 
           case 'bool':
-            $question_type = $_SESSION['questionType'];
-            $question = $_POST['questiona'];
-            $questionNum = $_SESSION['questionNum'];
-
+            $question = $_POST['question'];
             $_SESSION["question$questionNum"] = Array("questionType" => "$question_type", "question" => "$question");
             $questionNum++;
-            $_SESSION['questionNum'] = $questionNum;
             break;
 
           case 'text':
@@ -271,10 +267,9 @@ session_start();
           $q_type = $_SESSION["question$i"]['questionType'];
           switch ($q_type) {
             case 'multipleChoice':
-              echo "<p><b>Question $i</b></p>";
+              echo "<p>Question $i</p>";
               echo "<br>";
               echo $_SESSION["question$i"]['question'];
-              echo "<br>";
               echo '
                 <input type="radio" name="question'.$i.'" value="'.$_SESSION["question$i"]['responseA'].'">'.$_SESSION["question$i"]['responseA'].'<br>
                 <input type="radio" name="question'.$i.'" value="'.$_SESSION["question$i"]['responseB'].'">'.$_SESSION["question$i"]['responseB'].'<br>
@@ -282,14 +277,7 @@ session_start();
               '';
               break;
             case 'bool':
-              echo "<p><b>Question $i</b></p>";
-              echo "<br>";
-              echo $_SESSION["question$i"]['question'];
-              echo "<br>";
-              echo '
-                <input type="radio" name="true" value="true">True
-                <input type="radio" name="false" value="false">False
-                ';
+              # code...
               break;
             case 'text':
               # code...
@@ -306,7 +294,6 @@ session_start();
         }
 
       }
-
       // if question is multiple choice display radio input with session data
     //   if ($_POST && ($_POST['submit'] == 'Add to Survey')) {
     //   if (isset($_SESSION['question1'])) {
@@ -363,7 +350,6 @@ session_start();
             }
            ?>
            <a href="?logout=1">Destroy Session</a>
-
         </p>
     </center>
   </div>
