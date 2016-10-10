@@ -9,92 +9,26 @@ session_start();
     <meta name="description" content="Survey King">
     <title>Survey King</title>
     <style>
-      .container {
-        min-height: 100%;
-        width: 70%;
-        background-color: #666666;
-        float:left;
-      }
-
-      .dialog {
-        width: 50%;
-        background-color: white;
-        float:both;
-      }
-
       body {
+        align-content: center;
         color: black;
-      }
-
-      .button {
-        display: inline-block;
-        border-radius: 20px;
         background-color: #f4511e;
-        border: none;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 20px;
-        padding: 7px;
-        width: 150px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
       }
-
-      .button span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-      }
-
-      .button span:after {
-        content: ":)";
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-      }
-
-      .button:hover span {
-        padding-right: 25px;
-      }
-
-      .button:hover span:after {
-        opacity: 1;
-        right: 0;
-      }
-
-      .questionform {
-        width: 400px;
+      
+      .preview {
+        padding: 15px 10px 15px 10px;
+        width: 26%;
         margin: auto;
-      }
-
-      .selectQuestion {
-        margin: auto;
-        width: 28%;
-        background-color: #ffff7f;
-        color: black;
-        padding: 0 10px 0 10px;
-      }
-
-      .logo {
-        width: 300px;
-        height: 228px;
-      }
-
-      #preview {
-        padding: 10px;
-        color: black;
-        width: 28%;
-        background-color: #ffff7f;
-        float:right;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 20px; 
+        border-radius: 20px;
+        color:#C1DAD6;
+        background-color: #000066;
       }
     </style>
   </head>
 <body>
-
+<div class="preview">
 <?php
 // if there's a first question...
 if (isset($_SESSION["question1"])) {
@@ -147,16 +81,14 @@ if (isset($_SESSION["question1"])) {
           </select>
           ';
         break;
-
       default:
         # code...
         break;
     }
-
   }
-
 }
 ?>
+</div>
 
 </body>
 </html>

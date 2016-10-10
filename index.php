@@ -10,21 +10,48 @@ session_start();
     <title>Survey King</title>
     <style>
       .container {
-        min-height: 100%;
-        width: 70%;
-        background-color: #666666;
+
+        width: 60%;
         float:left;
       }
 
+       a:link {
+        color: #C1DAD6;
+      }
+
+
+       a:visited {
+         color: #C1DAD6;
+      }
+
+
+       a:hover {
+         color: #C1DAD6;
+       }
+
+       a:active {
+          color: #C1DAD6;
+        }
+
+      .top{width:100%;
+        height:40;}
+
       .dialog {
         width: 50%;
-        background-color: white;
         float:both;
       }
 
-      body {
-        color: #ffff7f;
+
+      body, html {
+        height:100%;
+        background: cover;
+        background-image:url("backgroundd.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-color: #b1d2d2;
+
       }
+
 
       .button {
         display: inline-block;
@@ -73,30 +100,49 @@ session_start();
 
       .selectQuestion {
         margin: auto;
-        width: 28%;
-        background-color: #ffff7f;
-        color: black;
-        padding: 0 10px 0 10px;
-      }
-
-      .logo {
-        width: 300px;
-        height: 228px;
+        width: 40%;
+        background-color: #000066;
+        color: #C1DAD6;
+        padding: 15px 10px 15px 10px;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        opacity: 1;
       }
 
       #preview {
-        padding: 10px;
-        color: black;
-        width: 28%;
-        background-color: #ffff7f;
-        float:right;
+         padding: 15px 10px 15px 10px;
+        width: 26%;
+        float:both;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        color:#C1DAD6;
+        background-color: #000066;
       }
+
+        #head{
+
+          background-color: #000066;
+           color:#C1DAD6;
+        }
+
+        .head {
+          background-color:#000066;
+          color:#C1DAD6;
+          size: 50px;
+          opacity: .7;
+        }
+
     </style>
   </head>
 <body>
 
-  <img class="logo" src="oo.png" alt="logo">
+
   <br>
+  <div class="head" align="center" ;>
+<h1>Survey King</h1>
+</div>
   <br>
 <div class="container">
 <!-- Left side survey question creator -->
@@ -115,7 +161,7 @@ session_start();
       <br>
       <input type="submit" name="submit" value="Add Question" class="button">
     </form>
-  </div>
+
 
   <div class="questionform">
    <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -186,10 +232,12 @@ session_start();
         }
       }
     ?>
-
+ <br>
+    <br>
       <input type="submit" name="submit" value="Add to Survey" class="button">
     </form>
 
+ </div>
   <?php
     // testing
     // print htmlspecialchars(print_r($_POST,true));
@@ -349,16 +397,20 @@ session_start();
       <form class="" action="survey.php" method="post">
         <button type="submit" class="button" style="vertical-align:middle"><span>Create </span></button>
       </form>
-      <br>
-      <p>
-        <?php
-          if (isset($_GET['logout'])) {
-          if($_GET['logout']==1) session_destroy();
-          }
-         ?>
-         <a href="?logout=1">Start Over</a>
-      </p>
+        <br>
+        <p>
+          <?php
+            if (isset($_GET['logout'])) {
+            if($_GET['logout']==1) session_destroy();
+            }
+           ?>
+           <a href="?logout=1">Start Over</a>
+
+        </p>
     </center>
-  </div>
+
+
+</div>
+
 </body>
 </html>
